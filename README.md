@@ -2,7 +2,9 @@
 
 A decompressor/converter for .ANI/.SLD animation files, as used in the Brunswick Frameworx bowling scoring system.
 
-![](/example/img1.gif) ![](/example/img2.gif) ![](/example/img3.gif) ![](/exampleimg4.gif) 
+![](/example/img1.gif) ![](/example/img2.gif)
+
+![](/example/img3.gif) ![](/example/img4.gif) 
 
 # Dependencies
 This tool relies on `numpy`, `APNG`, and `apnggif` for external dependencies. They can be acquired via `pip -m install`.
@@ -62,8 +64,9 @@ Each animation frame is compressed in a most likely proprietary RLE scheme.
 | 0x40-0x7F | xxyy zz | Outputs zz an ((yy & 0x3F) << 8 \| xx) amount of times
 | 0x80-0xBF | xx | Outputs the next (xx - 0x80) bytes
 | 0xC0-0xFF | xx yy | Outputs the next (yy + (xx & 0x3F) * 0x100)  bytes
+
 Every frame after the first one treats palette index 0x00 as transparency, so subsequent frames get "overlaid" onto the previous one's data.
 
-#Where do I find these files?
+# Where do I find these files?
 As far as I know the only known dump of Frameworx data was [shared to archive.org in 2021](https://archive.org/details/brunswick-frameworx-10pin-animations-sounds).
 Additionally, there exist animations that aren't even in this collection, such as "The Great Sparedini".
