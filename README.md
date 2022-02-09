@@ -52,7 +52,7 @@ Run the script in Python with `worx-ani.py [-h] F`, where `F` is the path to the
 ## Palette List
 A 0x300 byte long array of palette data, stored as 18-bit RGB666 values.
 ## Unknown List
-Self-explanatory, I'm not sure what this data is, seems to be 4 times the frame count plus 1 in size though.
+Self-explanatory, I'm not sure what this data is, seems to be 4 times the frame count plus 1 in size though. Every fourth byte seems to only have nybbles of 0, 7, 9, and E.
 ## Frame Pointer List
 An array of size 4 times the frame count plus 1. Contains pointers to the data for each animation frame, plus the last one pointing to the end of the file. Also followed by unknown data before the first frame.
 ## Frame Data
@@ -68,5 +68,6 @@ Each animation frame is compressed in a most likely proprietary RLE scheme.
 Every frame after the first one treats palette index 0x00 as transparency, so subsequent frames get "overlaid" onto the previous one's data.
 
 # Where do I find these files?
-As far as I know the only known dump of Frameworx data was [shared to archive.org in 2021](https://archive.org/details/brunswick-frameworx-10pin-animations-sounds).
-Additionally, there exist animations that aren't even in this collection, such as "The Great Sparedini".
+As of February 2022, there exist two dumps of Frameworx exciter data online:
+* [This one uploaded by gaythug in 2021](https://archive.org/details/brunswick-frameworx-10pin-animations-sounds), which I used in the development of this program.
+* [This more complete one uploaded by jayv0 in 2022](https://archive.org/details/brunswick-frameworx-exciter-graphics), which surfaced after I intially released this program, and was used in developing [their own decoder for the format](https://github.com/JayVoigt/FrameworxDecoder).
